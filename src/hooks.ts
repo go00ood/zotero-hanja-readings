@@ -65,7 +65,9 @@ async function onMainWindowUnload(_win: Window): Promise<void> {
         "renderTextSelectionPopup",
         selectionHandler,
       );
-    } catch {}
+    } catch (e) {
+      void e; // intentionally empty
+    }
     selectionHandler = null;
   }
   ztoolkit.unregisterAll();
@@ -79,7 +81,9 @@ function onShutdown(): void {
         "renderTextSelectionPopup",
         selectionHandler,
       );
-    } catch {}
+    } catch (e) {
+      void e; // intentionally empty
+    }
     selectionHandler = null;
   }
   ztoolkit.unregisterAll();
