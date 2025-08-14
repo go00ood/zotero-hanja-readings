@@ -14,7 +14,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GitHub_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,23 +25,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install deps
-        run: npm install
+        run: npm ci
+
+      - name: Ensure swc native binding   # (선택) swc 에러 예방
+        run: npm rebuild @swc/core --unsafe-perm
 
       - name: Build
-        run: |
-          npm run build
+        run: npm run build                # → .scaffold/build/*.xpi 생성
 
-      - name: Release to GitHub
-        run: |
-          npm run release
-          sleep 1s
-
-      - name: Notify release
-        uses: apexskier/github-release-commenter@v1
-        continue-on-error: true
+      - name: Attach XPI to current tag release
+        uses: ncipollo/release-action@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment-template: |
-            :rocket: _This ticket has been resolved in {release_tag}. See {release_link} for release notes._
+          tag: ${{ github.ref_name }}
+          allowUpdates: true
+          artifacts: ".scaffold/build/*.xpi,.scaffold/build/update*.json"
+          artifactErrorsFailBuild: true
+          generateReleaseNotes: true
