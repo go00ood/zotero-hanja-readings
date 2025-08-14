@@ -40,7 +40,9 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
 
       // 한자 주석(괄호) 부착
       const annotated = annotateHanjaPlain(rawText, hanjaMap, {
-        open: "(", close: ")", sep: "",
+        open: "(",
+        close: ")",
+        sep: "",
       });
 
       showSelectionToast(reader, annotated);
@@ -63,7 +65,7 @@ async function onMainWindowUnload(_win: Window): Promise<void> {
         "renderTextSelectionPopup",
         selectionHandler,
       );
-    } catch { }
+    } catch {}
     selectionHandler = null;
   }
   ztoolkit.unregisterAll();
@@ -77,7 +79,7 @@ function onShutdown(): void {
         "renderTextSelectionPopup",
         selectionHandler,
       );
-    } catch { }
+    } catch {}
     selectionHandler = null;
   }
   ztoolkit.unregisterAll();
@@ -95,7 +97,12 @@ function onShutdown(): void {
 function annotateHanjaPlain(
   text: string,
   map: Record<string, string>,
-  opts: { open?: string; close?: string; sep?: string; allRequired?: boolean } = {},
+  opts: {
+    open?: string;
+    close?: string;
+    sep?: string;
+    allRequired?: boolean;
+  } = {},
 ) {
   const { open = "(", close = ")", sep = "", allRequired = false } = opts;
   const HAN_RE = /[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]+/g; // 확장A, 기본, 호환
