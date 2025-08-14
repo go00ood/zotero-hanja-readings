@@ -1,7 +1,7 @@
 {
   "name": "hanja-readings",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Annotates selected text with Hanja readings",
   "config": {
     "addonName": "Hanja Readings for Zotero",
