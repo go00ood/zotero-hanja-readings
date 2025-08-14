@@ -33,6 +33,7 @@
     "zotero-plugin-toolkit": "^5.0.1"
   },
   "devDependencies": {
+    "@swc/core": "^1.13.3",
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.0.13",
