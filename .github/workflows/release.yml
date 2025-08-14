@@ -25,16 +25,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install deps
         run: npm ci
 
-      - name: Ensure swc native binding   # (선택) swc 에러 예방
+      - name: Ensure swc native binding # (선택) swc 에러 예방
         run: npm rebuild @swc/core --unsafe-perm
 
       - name: Build
-        run: npm run build                # → .scaffold/build/*.xpi 생성
+        run: npm run build # → .scaffold/build/*.xpi 생성
 
       - name: Attach XPI to current tag release
         uses: ncipollo/release-action@v1
