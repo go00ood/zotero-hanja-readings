@@ -36,14 +36,14 @@
     "@swc/core": "^1.13.3",
     "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.3.0",
     "@zotero-plugin/eslint-config": "^0.6.7",
-    "chai": "^5.2.1",
-    "eslint": "^9.31.0",
+    "chai": "^5.3.1",
+    "eslint": "^9.33.0",
     "mocha": "^11.7.1",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
-    "zotero-plugin-scaffold": "^0.7.1",
+    "zotero-plugin-scaffold": "^0.8.0",
     "zotero-types": "^4.0.5"
   },
   "prettier": {
